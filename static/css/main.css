@@ -28,3 +28,13 @@ height: 30px;
 line-height: 30px;
 color: #555555;
 }
+
+table th{
+text-align: center;
+color: green;
+}
+.name{
+color: SteelBlue;
+
+}
+
