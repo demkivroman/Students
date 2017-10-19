@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+<title>Сервіс Обліку Відвідування</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name = "description"
+      value = "Система Обліку Студентів Навчального Закаду" />
+
+<!-- Style inclusion -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel = "stylesheet" href="./css/main.css">
+
+<style>
+ table th a{
+color: black;
+}
+checkbox{
+background-color:SteelBlue;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Start container-->
+<div class = "container">
+
+<!-- Start Header-->
+<div class = "row" id = "header">
+   <!-- Logo-->
+<div class = "col-xs-8">
+<h1>Сервіс Обліку Студентів</h1>
+</div>
+   <!-- Group Selector-->
+<div class = "col-xs-4" id = "group-selector">
+  <strong>Група:</strong>
+  <select>
+    <option value = "">Усі Студенти</option>
+    <option value = "">МтМ - 21, Демків Роман (No 254)</option>
+    <option value = "">МтМ - 22, Подоба Віталій (No 254)</option>
+  <select>
+</div>
+</div>
+ <!-- End Header-->
+
+<!-- Start SubHeader-->
+<div class = "row" id = "sub-header">
+<div class = "col-xs-12">
+   <ul class = "nav nav-tabs" role = "tablist">
+   <li role = "presentation" > <a href = "#"> Студенти </a> </li>
+   <li role = "presentation" class = "active"> <a href = "#"> Відвідування </a> </li>
+   <li role = "presentation"> <a href = "#"> Групи </a> </li>
+   </ul>
+</div>
+</div>
+<!-- End SubHeader-->
+
+<!-- Start Main Page Content-->
+<div class = "row" id = "content-columns">
+ 
+    <div class = "col-xs-12" id = "content-column">
+     <!-- Status Message-->
+       
+      <h2>Облік Відвідування</h2>
+
+      <!-- Add Student Button -->
+<!-- Start Student Listing -->
+         <nav aria-label="Page navigation" style = "text-align: center">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&larr;</span>
+      </a>
+    </li>
+    <li><a href="#" style="color:black"><strong>Жовтень 2017</strong></a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+      
+      <div>
+         <form method="GET" id="visit_form"></form>
+           <table class="table table-bordered table-striped">
+              <thead>
+                 <tr>
+                   <th><a href = "#">#</a></th>
+                   <th><a href = "#">Студент</a></th>
+                   <th><a href = "#">Ср<br>1</a></th>
+                   <th><a href = "#">Чт<br>2</a></th>
+                   <th><a href = "#">Пт<br>3</a></th>
+                   <th><a href = "#">Сб<br>4</a></th>
+                   <th><a href = "#">Нд<br>5</a></th>
+                   <th><a href = "#">Пн<br>6</a></th>
+                   <th><a href = "#">Вт<br>7</a></th>
+                   <th><a href = "#">Ср<br>8</a></th>
+                   <th><a href = "#">Чт<br>9</a></th>
+                   <th><a href = "#">Пт<br>10</a></th> 
+                   <th><a href = "#">Сб<br>11</a></th>
+                   <th><a href = "#">Нд<br>12</a></th>  
+                   <th><a href = "#">Пн<br>13</a></th>
+                   <th><a href = "#">Вт<br>14</a></th>
+                   <th><a href = "#">Ср<br>15</a></th>
+                   <th><a href = "#">Чт<br>16</a></th>
+                   <th><a href = "#">Пт<br>17</a></th>
+                   <th><a href = "#">Сб<br>18</a></th>
+                   <th><a href = "#">Нд<br>19</a></th>
+                   <th><a href = "#">Пн<br>20</a></th>
+                   <th><a href = "#">Вт<br>21</a></th>
+                   <th><a href = "#">Ср<br>22</a></th>
+                   <th><a href = "#">Чт<br>23</a></th>
+                   <th><a href = "#">Пт<br>24</a></th>
+                   <th><a href = "#">Сб<br>25</a></th>
+                   <th><a href = "#">Нд<br>26</a></th>
+                   <th><a href = "#">Пн<br>27</a></th>
+                   <th><a href = "#">Вт<br>28</a></th>
+                   <th><a href = "#">Ср<br>29</a></th>
+                   <th><a href = "#">Чт<br>30</a></th>
+                   <th><a href = "#">Пт<br>31</a></th>
+                 </tr>
+              </thead>
+                <tbody>
+                 <tr>
+                   <td>1</td>
+                   <td class="name">Демків Роман</td>
+                   <td><input type="checkbox" name="Wed_1" value="1" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_2" value="2" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_3" value="3" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_4" value="4" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_5" value="5" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_6" value="6" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_7" value="7" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_8" value="8" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_9" value="9" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_10" value="10" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_11" value="11" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_12" value="12" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_13" value="13" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_14" value="14" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_15" value="15" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_16" value="16" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_17" value="17" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_18" value="18" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_19" value="19" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_20" value="20" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_21" value="21" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_22" value="22" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_23" value="23" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_24" value="24" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_25" value="25" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_26" value="26" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_27" value="27" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_28" value="28" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_29" value="29" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_30" value="30" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_31" value="31" form="visit_form"></td>
+                 </tr>
+                  <tr>
+                    <td>2</td>
+                   <td class="name">Павлічко Роман</td>
+                   <td><input type="checkbox" name="Wed_1" value="1" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_2" value="2" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_3" value="3" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_4" value="4" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_5" value="5" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_6" value="6" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_7" value="7" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_8" value="8" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_9" value="9" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_10" value="10" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_11" value="11" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_12" value="12" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_13" value="13" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_14" value="14" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_15" value="15" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_16" value="16" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_17" value="17" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_18" value="18" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_19" value="19" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_20" value="20" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_21" value="21" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_22" value="22" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_23" value="23" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_24" value="24" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_25" value="25" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_26" value="26" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_27" value="27" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_28" value="28" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_29" value="29" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_30" value="30" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_31" value="31" form="visit_form"></td>
+                 </tr>
+                  <tr>
+                    <td>3</td>
+                   <td class="name">Токарчик Роман</td>
+                   <td><input type="checkbox" name="Wed_1" value="1" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_2" value="2" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_3" value="3" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_4" value="4" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_5" value="5" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_6" value="6" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_7" value="7" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_8" value="8" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_9" value="9" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_10" value="10" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_11" value="11" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_12" value="12" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_13" value="13" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_14" value="14" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_15" value="15" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_16" value="16" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_17" value="17" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_18" value="18" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_19" value="19" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_20" value="20" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_21" value="21" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_22" value="22" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_23" value="23" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_24" value="24" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sat_25" value="25" form="visit_form"></td>
+                   <td><input type="checkbox" name="Sun_26" value="26" form="visit_form"></td>
+                   <td><input type="checkbox" name="Mon_27" value="27" form="visit_form"></td>
+                   <td><input type="checkbox" name="Tus_28" value="28" form="visit_form"></td>
+                   <td><input type="checkbox" name="Wed_29" value="29" form="visit_form"></td>
+                   <td><input type="checkbox" name="Thu_30" value="30" form="visit_form"></td>
+                   <td><input type="checkbox" name="Fri_31" value="31" form="visit_form"></td>
+                 </tr>
+              </tbody>
+
+           </table>
+                   
+      </div>
+    </div>
+
+</div>
+<!-- End Of Start Main Page Content-->
+
+<!-- Start Footer-->
+<div class = "row" id = "footer">
+    <div class = "col-xs-12">
+     &copy; 2017 Сервіс Обліку Студентів
+    </div>
+</div>
+<!-- End Footer-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

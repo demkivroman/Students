@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+<title>Форма Редагування Клієнта</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name = "description"
+      value = "Система Обліку Студентів Навчального Закаду" />
+
+<!-- Style inclusion -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel = "stylesheet" href="./css/main.css">
+
+<style>
+.fieldNames{
+text-align: right;
+}
+  table td{
+padding: 5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Start container-->
+<div class = "container">
+
+<!-- Start Form-->
+<div class = "row" id = "header">
+   <!-- Form & h1-->
+<div class = "col-xs-12">
+<h1>Форма редагування Студента</h1>
+
+<!-- Form Student data -->
+   <form action="" method = "">
+      <table>
+        <tr>
+           <td class="fieldNames">Ім'я*</td>
+           <td><input type="text" name="firstname" value=""></td>
+        </tr>
+        <tr>
+           <td class="fieldNames">По-батькові</td>
+           <td><input type="text" name="fathername" value=""></td>
+        </tr>
+        <tr>
+           <td class="fieldNames">№ Білету*</td>
+           <td><input type="text" name="ticketNumber" value=""></td>
+        </tr>
+        <tr>
+           <td class="fieldNames">Дата народження  </td>
+           <td><input type="datetime-local" name="birthday" value="dd/mm/year"></td>
+        </tr>
+        <tr>
+           <td class="fieldNames" valign = "top">Фото</td>
+           <td>Наразі: <span style="color:SteelBlue">img/111.jpg</span> 
+            <input type="checkbox" name="photo"><br>
+            <button type="button" class="btn btn-default" style="padding:3px">Очистити</button>
+           </td>          
+        </tr>
+        <tr>
+           <td></td>
+           <td>
+           <br>
+           Змінити: <input style = "border-radius: 40px" type="button" value="Choose File">
+           <span>No file chosen</span>
+           </td>          
+        </tr>
+        <tr>
+           <td class="fieldNames"><br>Група*</td>
+           <td><br>
+                <select class="form-control" id="groups">
+                  <option>МПП-21</option>
+                  <option>МПП-22</option>
+                  <option>МПП-23</option>
+                </select>
+           </td>
+        </tr>
+        <tr>
+           <td class="fieldNames" valign = "top">Додаткові нотатки</td>
+           <td> <textarea name="message" rows="5" cols="20" value = "">
+           </textarea> </td>
+        </tr>
+        <tr>
+           <td>
+           </td>
+           <td>
+            <br>
+           <button type="button" class="btn btn-primary">Зберегти</button>
+           <button type="reset" class="btn btn-default">Скасувати</button>
+           </td> 
+        </tr> 
+      </table>    
+  
+</form> 
+</div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^$', views.students_list, name='home'),
     url(r'^students/add$',views.students_add, name='students_add'),
     url(r'^students/(?P<sid>\d+)/edit/$',views.students_edit,name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$',views.students_delete,name='students_delete	'),
+    url(r'^students/(?P<sid>\d+)/delete/$',views.students_delete,name='students_delete'),
 #Groups url
     url(r'^groups/$',views.groups_list,name='groups'),
     url(r'^groups/add/$',views.groups_add,name='groups_add'),
