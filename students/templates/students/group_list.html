@@ -1,0 +1,69 @@
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Групи{% endblock meta_title %}
+{% block title %}Групи{% endblock title %}
+
+{% block content %}
+<!-- Add Student Button -->
+      <a style = "color: white; background-color: steelblue"  
+      class = "btn btn - primary" href = {% url "groups_add" %}> Додати Групу </a>
+      
+      
+      <div>
+           <!-- Start Student Listing -->
+           <table class="table table-hover table-striped">
+              <thead>
+                 <tr>
+                   <th>#</th>
+                   <th><a href = "#">Назва&uarr;</a></th>
+                   <th><a href = "#">Староста</a></th>
+                   <th>Дії</th>   
+                 </tr>
+              </thead>
+                <tbody>
+                {% for group in groups %}
+                 <tr>
+                   <td>{{ forloop.counter }}</td>
+                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.name }}</a></td>
+                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.lider }}</a></td>
+                   <td>
+                   <div class="dropdown">
+   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Дія
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role = "menu">
+    <li role = "presentation"> <a role = "menuitem" tabindex="-1" href="/journal/{{ group.id }}">Відвідування</a></li>
+    <li role = "presentation"> <a role = "menuitem" tabindex="-1" href="{%url "groups_edit" group.id %}">Редагувати</a></li>
+    <li role = "presentation"> <a role = "menuitem" tabindex="-1" href="{%url "groups_edit" group.id %}">Видалити</a></li>
+  </ul>
+</div>
+                   </td>
+                   </tr>
+              
+              {% endfor %} 
+              </tbody>
+
+           </table>
+                   <nav>
+                     <ul class = "pagination">
+                        <li><a href = "#">1</a></li>
+                        <li class="active"><a href = "#">2</a></li>
+                        <li><a href = "#">Далі</a></li>
+                   </nav>
+      </div>
+{% endblock content %}
+
+<!-- Start Footer-->
+<div class = "row" id = "footer">
+    <div class = "col-xs-12">
+     &copy; 2014 Сервіс Обліку Студентів
+    </div>
+</div>
+<!-- End Footer-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
