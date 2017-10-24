@@ -4,6 +4,7 @@
 {% block title %}Групи{% endblock title %}
 
 {% block content %}
+{% url 'group' as grup %}
 <!-- Add Student Button -->
       <a style = "color: white; background-color: steelblue"  
       class = "btn btn - primary" href = {% url "groups_add" %}> Додати Групу </a>

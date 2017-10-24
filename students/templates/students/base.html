@@ -44,9 +44,14 @@
 <div class = "row" id = "sub-header">
 <div class = "col-xs-12">
    <ul class = "nav nav-tabs" role = "tablist">
-   <li role = "presentation" class = "active"> <a href = "{% url "home" %}"> Студенти </a> </li>
-   <li role = "presentation"> <a href = "/journal"> Відвідування </a> </li>
-   <li role = "presentation"> <a href = "{% url "groups" %}"> Групи </a> </li>
+   {% url 'home' as home %}
+   <li role = "presentation" {% if request.path == home %}
+    class = "active" {%endif%}> <a href = "{% url "home" %}"> Студенти </a> </li>
+   <li role = "presentation" {% if '/journal' in request.path%}
+   class = "active" {%endif%}> <a href = "/journal"> Відвідування </a> </li>
+   {% url 'groups' as group %}
+   <li role = "presentation" {% if request.path == group %}
+    class = "active" {%endif%}> <a href = "{% url "groups" %}"> Групи </a> </li>
    </ul>
 </div>
 </div>
