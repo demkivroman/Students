@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Universal portal url
-PORTAL_URL = 'http://localhost:8000' 
+
