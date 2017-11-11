@@ -19,6 +19,11 @@ from django.contrib import admin
 from students.views import students
 from students.views import groups
 from students.views import journal
+#from .settings import MEDIA_ROOT, DEBUG
+
+from django.conf import settings
+from django.views.static import serve
+
 
 urlpatterns = [
 #Students url
@@ -37,3 +42,10 @@ urlpatterns = [
 #Admin url
     url(r'^admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

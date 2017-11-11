@@ -1,4 +1,3 @@
-{% load static from staticfiles %}
 
 <!DOCTYPE html>
 <html lang="uk">
@@ -11,7 +10,7 @@
 
 <!-- Style inclusion -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel = "stylesheet" href="{{PORTAL_URL}}{% static "css/main.css" %}">
+
 
 {% block extra_css %}{% endblock extra_css %}
 
@@ -30,7 +29,7 @@
 </div>
 
    <!-- Group Selector-->
-<div class = "col-xs-4" id = "group-selector">
+<div class = "col-xs-4" id = "group-selector" style = "margin-top: 25px">
   <strong>Група:</strong>
   <select>
     <option value = "">Усі Студенти</option>
