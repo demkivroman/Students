@@ -4,6 +4,7 @@
 {% block title %}База Студентів{% endblock title %}
 
 {% block content %}
+
 <!-- Add Student Button -->
       <a class = "btn btn - primary" href = {% url "students_add" %}> Додати Студента </a>
       
@@ -41,7 +42,7 @@
               </thead>
                 {% endwith %}
                 <tbody>
-                {% for student in students %}
+                {% for student in students.pagesList %}
                  <tr>
                    <td>{{ forloop.counter }}</td>
                    <td>
@@ -73,25 +74,19 @@
               </tbody>
 
            </table>
-                  
-                 {% if students.has_other_pages %} 
-                 {% with order_by=request.GET.order_by reverse=request.GET.reverse %} 
+                   
                    <nav>
                      <ul class = "pagination">
-                        <li><a href = "{% url 'home' %}?page=1&amp;order_by={{order_by}}
-&amp;reverse={{reverse}}">&laquo;</a></li>
-                        {% for p in students.paginator.page_range %}
-                        <li {% if students.number == p %}class="active"{% endif %}>
-                          <a href = "{% url 'home' %}?page={{p}}&amp;order_by={{order_by}}
-&amp;reverse={{reverse}}">{{p}}</a>
+                        <li><a href = "{% url 'home' %}?page=1">&laquo;</a></li>
+                     {% for p in students.pages %}
+                        <li {% if p == students.number %}class="active"{% endif %}>
+                          <a href = "{% url 'home' %}?page={{ p }}">{{ p }}</a>
                         </li>
-                        {% endfor %}
+                     {% endfor %}  
                         <li>
-                           <a href = "{% url 'home' %}?page={{students.paginator.num_pages}}&amp;order_by={{order_by}}&amp;reverse={{reverse}}">&raquo;</a>
+                           <a href = "{% url 'home' %}?page={{students.lastPage}}">&raquo;</a>
                         </li>
                    </nav>
-                  {% endwith %} 
-                  {% endif %}
       </div>
 {% endblock content %}
 

@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import  url
 from django.contrib import admin
 
+
 from students.views import students
 from students.views import groups
 from students.views import journal
+from students.views import stud_test
 #from .settings import MEDIA_ROOT, DEBUG
 
 from django.conf import settings
@@ -31,6 +33,8 @@ urlpatterns = [
     url(r'^students/add$',students.students_add, name='students_add'),
     url(r'^students/(?P<sid>\d+)/edit/$',students.students_edit,name='students_edit'),
     url(r'^students/(?P<sid>\d+)/delete/$',students.students_delete,name='students_delete'),
+
+    url(r'^test$',stud_test.students_test, name='test'),
 #Groups url
     url(r'^groups/$',groups.groups_list,name='groups'),
     url(r'^groups/add$',groups.groups_add,name='groups_add'),

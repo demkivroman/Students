@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+<title>Сервіс Обліку Студентів</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name = "description"
+      value = "Система Обліку Студентів Навчального Закаду" />
+
+<!-- Style inclusion -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+<h1 style = "text-align:center">Test Page</h1>
+{{tample_value_students.page}}
+      <div style="margin-top:50px">
+            <table class="table table-hover table-striped">
+                   <thead>
+                      <tr>
+                      <th>#</th>
+                      <th>Firsr Name</th> 
+                      <th>Last Name</th>
+                      <th>Ticket</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                   {% for stud in tample_value_students.pagesList %} 
+                          <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ stud.first_name }}</td>
+                              <td>{{ stud.last_name }}</td>
+                              <td>{{ stud.ticket }}</td>  
+                          </tr>    
+                   {% endfor %} 
+                   </tbody>  
+            </table>
+      </div>
+
+<div>
+                   <nav>
+                     <ul class = "pagination">
+                        <li><a href = "{% url 'test' %}?page=1">&laquo;</a></li>
+                     {% for p in tample_value_students.pages %}
+                        <li {% if p == tample_value_students.number %}class="active"{% endif %}>
+                          <a href = "{% url 'test' %}?page={{ p }}">{{ p }}</a>
+                        </li>
+                     {% endfor %}  
+                        <li>
+                           <a href = "{% url 'test' %}?page={{tample_value_students.lastPage}}">&raquo;</a>
+                        </li>
+                   </nav>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
