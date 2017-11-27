@@ -74,19 +74,20 @@
               </tbody>
 
            </table>
-                   
+                  
                    <nav>
                      <ul class = "pagination">
                         <li><a href = "{% url 'home' %}?page=1">&laquo;</a></li>
                      {% for p in students.pages %}
                         <li {% if p == students.number %}class="active"{% endif %}>
-                          <a href = "{% url 'home' %}?page={{ p }}">{{ p }}</a>
+                          <a href = "{% url 'home' %}?page={{ p }}&amp;order_by={{request.GET.order_by}}&amp;reverse={{request.GET.reverse}}">{{ p }}</a>
                         </li>
                      {% endfor %}  
                         <li>
                            <a href = "{% url 'home' %}?page={{students.lastPage}}">&raquo;</a>
                         </li>
                    </nav>
+                  
       </div>
 {% endblock content %}
 

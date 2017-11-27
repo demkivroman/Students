@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 from ..models import Students
 
-
+	
 # Views for Students
 def students_list(request):
     students = Students.objects.all()
@@ -52,8 +52,13 @@ def students_list(request):
             self.lastPage = len(pages)
             self.number = page + 1  
     
+    if len(studList) > 0:
+        obj = StudentsList(pages,studList[page])  
+    else:
+        obj = StudentsList(pages,students)      
     
-    return render(request,'students/students_list.html',{'students': StudentsList(pages,studList[page])})
+    
+    return render(request,'students/students_list.html',{'students': obj})
 
 
 

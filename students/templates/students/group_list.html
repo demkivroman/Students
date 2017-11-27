@@ -9,24 +9,33 @@
       <a style = "color: white; background-color: steelblue"  
       class = "btn btn - primary" href = {% url "groups_add" %}> Додати Групу </a>
       
-      
       <div>
            <!-- Start Student Listing -->
            <table class="table table-hover table-striped">
+           {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
               <thead>
                  <tr>
                    <th>#</th>
-                   <th><a href = "#">Назва&uarr;</a></th>
-                   <th><a href = "#">Староста</a></th>
+                   <th><a href = "{% url 'groups' %}?reverse=1{% if reverse == '1'%}reverse=0{%endif%}">Назва
+                   {% if reverse == '1' and order_by == '' %}&darr;
+                   {% elif order_by == '' %} &uarr;{% endif %}
+                   </a></th>
+                   <th><a href = "{% url 'groups' %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&reverse=1{% endif%}">Староста
+                   {% if order_by == 'leader' and reverse == '1' %}&darr;
+                   {% elif order_by == 'leader' %}&uarr;{% endif %}
+                   </a></th>
+                   <th>Нотатки</th> 
                    <th>Дії</th>   
                  </tr>
               </thead>
+            {% endwith %}
                 <tbody>
-                {% for group in groups %}
+                {% for group in groups.pagesList %}
                  <tr>
                    <td>{{ forloop.counter }}</td>
-                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.name }}</a></td>
-                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.lider }}</a></td>
+                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.title }}</a></td>
+                   <td> <a href = "{%url "groups_edit" group.id %}">{{ group.leader }}</a></td>
+                   <td>{{ group.note }}</td>
                    <td>
                    <div class="dropdown">
    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -46,12 +55,23 @@
               </tbody>
 
            </table>
-                   <nav>
+                 {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
+                  <nav>
                      <ul class = "pagination">
-                        <li><a href = "#">1</a></li>
-                        <li class="active"><a href = "#">2</a></li>
-                        <li><a href = "#">Далі</a></li>
+                        <li><a href = "{% url 'groups' %}?page=1{% if order_by %}&order_by={{order_by}}{%endif%}
+{%if reverse%}&reverse=1{%endif%}">&laquo;</a></li>
+                     {% for p in groups.pages %}
+                        <li {% if p == groups.number %}class="active"{% endif %}>
+                          <a href = "{% url 'groups' %}?page={{ p }}{% if order_by %}&order_by={{order_by}}{%endif%}
+{%if reverse%}&reverse=1{%endif%}">{{ p }}</a>
+                        </li>
+                     {% endfor %}  
+                        <li>
+                           <a href = "{% url 'groups' %}?page={{groups.lastPage}}{% if order_by %}&order_by={{order_by}}{%endif%}
+{%if reverse%}&reverse=1{%endif%}">&raquo;</a>
+                        </li>
                    </nav>
+                 {% endwith %} 
       </div>
 {% endblock content %}
 
