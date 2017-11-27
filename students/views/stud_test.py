@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-from ..models import Students
+from ..models.students import Students
 
 # Views for Students
 def students_test(request):   
