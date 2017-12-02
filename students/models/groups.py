@@ -22,8 +22,8 @@ class Group(models.Model):
         on_delete = models.SET_NULL)
 
     note = models.TextField(
-    blank = True,
-    verbose_name = u"Додаткові нотатки")
+        blank = True,
+        verbose_name = u"Додаткові нотатки")
      
     def __unicode__(self):
         if self.leader:

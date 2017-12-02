@@ -52,6 +52,8 @@
    {% url 'groups' as group %}
    <li role = "presentation" {% if request.path == group %}
     class = "active" {%endif%}> <a href = "{% url "groups" %}"> Групи </a> </li>
+   {% url 'exams' as exam %}
+   <li role = "presentation" {% if request.path == exam %} class = "active" {%endif%}><a href = "{% url 'exams' %}">Іспити</a></li>
    </ul>
 </div>
 </div>
@@ -80,7 +82,7 @@
 <!-- Start Footer-->
 <div class = "row" id = "footer">
     <div class = "col-xs-12">
-     &copy; 2014 Сервіс Обліку Студентів
+     &copy; 2017 Сервіс Обліку Студентів
     </div>
 </div>
 <!-- End Footer-->
