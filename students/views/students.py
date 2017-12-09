@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 
 import os
 from datetime import datetime
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib import messages
 
 from ..models  import Students, Group
 
@@ -134,11 +134,12 @@ def students_add(request):
             if not errors:
                 # create student object
                 student = Students(**data)
-                student.save()         
-                
+                student.save()    
+                # save to message 
+                messages.success(request, u'Студента %s %s %s успішно додано!' % (last_name,first_name,
+                request.POST.get('middle_name')))                     
                 # redirect user to student list
-                return HttpResponseRedirect(u'%s?status_message=Студента успішно додано! - &first_name=%s\
-&last_name=%s&middle_name=%s' % (reverse('home'),first_name,last_name,request.POST.get('middle_name')))  
+                return HttpResponseRedirect(reverse('home'))  
             else:
                 # render form with errors and previous user input
                 return render(request, 'students/students_add.html',
@@ -146,8 +147,10 @@ def students_add(request):
                      'errors': errors})
 
         elif request.POST.get('cancel_button') is not None:
+            # add to message
+            messages.info(request, u'Додавання студента скасовано!')
             # redirect to home page on cancel button
-            return HttpResponseRedirect(u'%s?status_message=Додавання студента скасовано!' % reverse('home'))
+            return HttpResponseRedirect(reverse('home'))
 
     else:
         return render(request,'students/students_add.html',
