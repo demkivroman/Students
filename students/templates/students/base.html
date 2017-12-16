@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -9,7 +10,7 @@
 
 <!-- Style inclusion -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
 {% block extra_css %}{% endblock extra_css %}
 
@@ -54,6 +55,9 @@
     class = "active" {%endif%}> <a href = "{% url "groups" %}"> Групи </a> </li>
    {% url 'exams' as exam %}
    <li role = "presentation" {% if request.path == exam %} class = "active" {%endif%}><a href = "{% url 'exams' %}">Іспити</a></li>
+   <li role = "presentation" {%if 'contact-admin' in request.path%} class="active" {%endif%}>
+   <a href="{% url 'contact_admin'%}">Контакт</a>
+   </li>
    </ul>
 </div>
 </div>

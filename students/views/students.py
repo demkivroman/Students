@@ -136,7 +136,7 @@ def students_add(request):
                 student = Students(**data)
                 student.save()    
                 # save to message 
-                messages.success(request, u'Студента %s %s %s успішно додано!' % (last_name,first_name,
+                messages.success(request, u'Студента - %s %s %s, успішно додано :)' % (last_name,first_name,
                 request.POST.get('middle_name')))                     
                 # redirect user to student list
                 return HttpResponseRedirect(reverse('home'))  
@@ -148,7 +148,7 @@ def students_add(request):
 
         elif request.POST.get('cancel_button') is not None:
             # add to message
-            messages.info(request, u'Додавання студента скасовано!')
+            messages.info(request, u'Додавання студента скасовано :)')
             # redirect to home page on cancel button
             return HttpResponseRedirect(reverse('home'))
 
