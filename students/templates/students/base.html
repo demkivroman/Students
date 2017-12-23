@@ -55,8 +55,8 @@
     class = "active" {%endif%}> <a href = "{% url "groups" %}"> Групи </a> </li>
    {% url 'exams' as exam %}
    <li role = "presentation" {% if request.path == exam %} class = "active" {%endif%}><a href = "{% url 'exams' %}">Іспити</a></li>
-   <li role = "presentation" {%if 'contact-admin' in request.path%} class="active" {%endif%}>
-   <a href="{% url 'contact_admin'%}">Контакт</a>
+   <li role = "presentation" {%if 'contact' in request.path %} class="active" {%endif%}>
+   <a href="{% url 'contact_admin' %}">Контакт</a>
    </li>
    </ul>
 </div>
