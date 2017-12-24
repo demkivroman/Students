@@ -9,6 +9,25 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from ..models  import Students, Group
+from django.views.generic import UpdateView
+
+class StudentUpdateView(UpdateView):
+    model = Students
+    fields = '__all__'
+    template_name = 'students/students_edit.html'
+
+    def get_success_url(self):
+        messages.info(self.request, u'Студента успішно збережено :)')
+        return reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            messages.info(self.request, u'Редагування студента відмінено!')
+            return HttpResponseRedirect(reverse('home')) 
+
+        else:
+            return super(StudentUpdateView, self).post(request, *args, **kwargs)
+
 
 	
 # Views for Students
