@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from ..models  import Students, Group
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 
 class StudentUpdateView(UpdateView):
     model = Students
@@ -28,8 +28,17 @@ class StudentUpdateView(UpdateView):
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
+# Class for deleting object
 
-	
+class StudentDeleteView(DeleteView):
+    model = Students
+    template_name = 'students/students_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.info(self.request, u'Студента успішно видалено :)')
+        return reverse('home')
+
+    	
 # Views for Students
 def students_list(request):
     students = Students.objects.all()
