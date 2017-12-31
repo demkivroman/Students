@@ -29,7 +29,7 @@ class Exams(models.Model):
         verbose_name = u"Група",
         blank = False,
         null = True,
-        on_delete=models.PROTECT)
+        on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return u"%s - %s (%s %s)" % (self.title, self.dataTime, self.teacher, self.groups)

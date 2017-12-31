@@ -24,7 +24,7 @@ from students.views import stud_test
 from students.views import exams
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView,StudentDeleteView
-#from .settings import MEDIA_ROOT, DEBUG
+from students.views.groups import GroupDeleteView
 
 from django.conf import settings
 from django.views.static import serve
@@ -39,10 +39,10 @@ urlpatterns = [
 
     url(r'^test$',stud_test.students_test, name='test'),
 #Groups url
-    url(r'^groups/$',groups.groups_list,name='groups'),
+    url(r'^groups$',groups.groups_list,name='groups'),
     url(r'^groups/add$',groups.groups_add,name='groups_add'),
     url(r'^groups/(?P<gid>\d+)/edit/$',groups.groups_edit,name='groups_edit'),
-    url(r'^groups/(?P<gid>\d+)/delete/$',groups.groups_delete,name='groups_delete'),
+    url(r'^groups/(?P<pk>\d+)/delete/$',GroupDeleteView.as_view(),name='groups_delete'),
 #Visiting url
     url(r'^journal/$',journal.journal_form,name='journal'),
 #Emams url

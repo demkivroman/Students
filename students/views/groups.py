@@ -3,8 +3,21 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib import messages
+from ..models  import Students, Group
+from django.views.generic import UpdateView, DeleteView
+from django.core.urlresolvers import reverse
 
-from ..models.groups import Group
+# class for group delete
+
+class GroupDeleteView(DeleteView):
+    model = Group
+    template_name = 'students/group_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.info(self.request, u'Групу успішно видалено :)')
+        return reverse('groups')
+
 
 #Views for Groups
 
