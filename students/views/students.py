@@ -188,5 +188,19 @@ def students_edit(request,sid):
     return HttpResponse('<h1>Edit Students %s</h1>' % sid)
 
 def students_delete(request,sid):
-    return HttpResponse('<h1>Delete Student %s</h1>' % sid)
+    st_obj = Students.objects.get(pk=sid)
+    if request.method == "POST":
+        if request.POST.get('delete_button') is not None: 
+            try:
+                st_obj.delete()
+            except Exception as ex:
+                messages.info(request, u'Студента - %s %s, не видалено. Помилка: %s' % \
+                (st_obj.first_name,st_obj.last_name,ex))
+            else:
+                messages.info(request, u'Студента - %s %s, видалено успішно!' % \
+                (st_obj.first_name,st_obj.last_name))
+                return HttpResponseRedirect(reverse('home'))           
+    else:        
+        return render(request,'students/st_del_manual.html',
+            {'st_obj':st_obj})    
 

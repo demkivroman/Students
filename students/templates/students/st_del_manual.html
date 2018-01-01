@@ -1,0 +1,21 @@
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Видалити Студента{% endblock meta_title %}
+{% block title %}Видалити Студента{% endblock title %}
+
+{% block content %}
+
+<!-- Form edit student -->
+
+    <form action="{% url 'students_delete_manual' st_obj.id %}" method="post" enctype="multipart/form-data"
+    role = "form" class = "form-horizontal">
+ 
+        {%csrf_token%}
+    <p>Ви дійсно хочете видалити студента "<span style="color: green">
+    {{st_obj.first_name}} {{st_obj.last_name}}</span> 	"?</p>
+
+        <input type="submit" value="Так" name = "delete_button" class = "btn btn-danger" />
+        <br /><br />
+    </form>
+
+{% endblock content %}
