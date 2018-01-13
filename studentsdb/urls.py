@@ -25,6 +25,7 @@ from students.views import exams
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView,StudentDeleteView
 from students.views.groups import GroupDeleteView
+from students.views.journal import JournalView
 
 from django.conf import settings
 from django.views.static import serve
@@ -44,7 +45,7 @@ urlpatterns = [
     url(r'^groups/(?P<gid>\d+)/edit/$',groups.groups_edit,name='groups_edit'),
     url(r'^groups/(?P<pk>\d+)/delete/$',GroupDeleteView.as_view(),name='groups_delete'),
 #Visiting url
-    url(r'^journal/$',journal.journal_form,name='journal'),
+    url(r'^journal/$',JournalView.as_view(),name='journal'),
 #Emams url
     url(r'^exams/$',exams.exams_list,name='exams'),
 # Contact Admin Form
