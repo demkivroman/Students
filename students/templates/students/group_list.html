@@ -30,9 +30,13 @@
               </thead>
             {% endwith %}
                 <tbody>
-                {% for group in groups.pagesList %}
+                {% for group in groups.groups %}
                  <tr>
-                   <td>{{ forloop.counter }}</td>
+                   <td>{% if groups.is_paginated %}
+                       {{ groups.page_obj.start_index|add:forloop.counter|add:"-1"}}
+                       {% else %}
+                       {{ forloop.counter }}
+                       {% endif %}</td>
                    <td> <a href = "{%url "groups_edit" group.id %}">{{ group.title }}</a></td>
                    <td> <a href = "{%url "groups_edit" group.id %}">{{ group.leader }}</a></td>
                    <td>{{ group.note }}</td>
@@ -55,23 +59,12 @@
               </tbody>
 
            </table>
-                 {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-                  <nav>
-                     <ul class = "pagination">
-                        <li><a href = "{% url 'groups' %}?page=1{% if order_by %}&order_by={{order_by}}{%endif%}
-{%if reverse%}&reverse=1{%endif%}">&laquo;</a></li>
-                     {% for p in groups.pages %}
-                        <li {% if p == groups.number %}class="active"{% endif %}>
-                          <a href = "{% url 'groups' %}?page={{ p }}{% if order_by %}&order_by={{order_by}}{%endif%}
-{%if reverse%}&reverse=1{%endif%}">{{ p }}</a>
-                        </li>
-                     {% endfor %}  
-                        <li>
-                           <a href = "{% url 'groups' %}?page={{groups.lastPage}}{% if order_by %}&order_by={{order_by}}{%endif%}
-{%if reverse%}&reverse=1{%endif%}">&raquo;</a>
-                        </li>
-                   </nav>
-                 {% endwith %} 
+ 
+{% with object_list=groups.groups is_paginated=groups.is_paginated paginator=groups.paginator %}
+    {% include "students/pagination.html" %}
+{% endwith %}               
+ 
+
       </div>
 {% endblock content %}
 
