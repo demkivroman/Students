@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^groups/(?P<gid>\d+)/edit/$',groups.groups_edit,name='groups_edit'),
     url(r'^groups/(?P<pk>\d+)/delete/$',GroupDeleteView.as_view(),name='groups_delete'),
 #Visiting url
-    url(r'^journal/$',JournalView.as_view(),name='journal'),
+    url(r'^journal/(?P<pk>\d+)?/?$',JournalView.as_view(),name='journal'),
 #Emams url
     url(r'^exams/$',exams.exams_list,name='exams'),
 # Contact Admin Form

@@ -12,11 +12,33 @@ from django.core.urlresolvers import reverse
 
 from ..models import MonJournal, Students
 from ..util import paginate
+from django.http import JsonResponse
+
 
 #View for visiting
 
 class JournalView(TemplateView):
     template_name = "students/journal.html"
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        
+        # prepare student, dates and presence data
+
+        current_date = datetime.strptime(data['date'],'%Y-%m-%d').date()
+        month = date(current_date.year, current_date.month, 1)
+        present = data['present'] and True or False
+        student = Students.objects.get(pk=data['pk'])
+     
+        
+        # get or create journal object for given student and month
+        journal = MonJournal.objects.get_or_create(student = student, date = month)[0]
+
+        # set new presence on journal for given student and save result
+        setattr(journal, 'present_day%d' % current_date.day, present)
+        journal.save()              
+        """import pdb; pdb.set_trace()"""
+        return JsonResponse({'key': 'success'})
 
     def get_context_data(self, **kwargs):
         # get context data from TemplateView class
@@ -41,9 +63,13 @@ class JournalView(TemplateView):
         number_of_days = monthrange(myear,mmonth)[1]
         context['month_header'] = [{'day':d, 'verbose':day_abbr[weekday(myear,mmonth,d)][:2]}
             for d in range(1, number_of_days+1)] 
-        # витягуємо усіх студентів посортованих по
-
-        queryset = Students.objects.order_by('last_name')
+        # витягуємо усіх студентів посортованих по прізвищу
+        # або одного, якщо нам потрібно показати його журнал відвідування
+        
+        if kwargs.get('pk'):
+            queryset = [Students.objects.get(pk=kwargs['pk'])]
+        else:     
+            queryset = Students.objects.order_by('last_name')
 
         # це адреса для посту AJAX запиту, як бачите, ми робитимемо його на цю ж в'юшку 
         # вюшка журналу буде і показувати журнал і обслуговувати запити 
@@ -55,19 +81,21 @@ class JournalView(TemplateView):
         # необхідні дані:
 
         students = []
+        journals = []
         for student in queryset:
             # TODO:витягуємо журнал для студента із вибраного місця
             # набиваємо дні для студента
             try:
-                journal = MonthJournal.objects.get(student=student,date=month)
+                journal = MonJournal.objects.get(student=student,date=month)
             except Exception:
                 journal = None
             # fill in days presence list for current student  
+            journals.append(journal)
             days = []
             for day in range(1, number_of_days+1):
                 days.append({
                     'day':day,
-                    'present': journal and getattr(journal,'present_day%d' % day, False) or False,
+                    'present': getattr(journal,'present_day%d' % day, False),
                     'date': date(myear,mmonth,day).strftime('%Y-%m-%d'),})
             # набиваємо усі решта дані студента
                 
@@ -76,7 +104,6 @@ class JournalView(TemplateView):
                 'days': days,
                 'id': student.id,
                 'update_url': update_url})
-
 
         # застосовуємо пагінацію до списку студентів
         context = paginate(students, 10, self.request, context, var_name='students')
