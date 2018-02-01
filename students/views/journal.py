@@ -69,7 +69,11 @@ class JournalView(TemplateView):
         if kwargs.get('pk'):
             queryset = [Students.objects.get(pk=kwargs['pk'])]
         else:     
-            queryset = Students.objects.order_by('last_name')
+            current_group = get_current_group(self.request)
+            if current_group:
+                queryset = Students.objects.filter(student_group=current_group)
+            else:
+                queryset = Students.objects.order_by('last_name')
 
         # це адреса для посту AJAX запиту, як бачите, ми робитимемо його на цю ж в'юшку 
         # вюшка журналу буде і показувати журнал і обслуговувати запити 
