@@ -11,7 +11,7 @@ from calendar import monthrange, weekday, day_abbr
 from django.core.urlresolvers import reverse
 
 from ..models import MonJournal, Students
-from ..util import paginate
+from ..util import paginate, get_current_group
 from django.http import JsonResponse
 
 

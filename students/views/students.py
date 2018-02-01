@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 
 from ..models  import Students, Group
 from django.views.generic import UpdateView, DeleteView
+from ..util import paginate, get_current_group
 
 class StudentUpdateView(UpdateView):
     model = Students
@@ -41,7 +42,14 @@ class StudentDeleteView(DeleteView):
     	
 # Views for Students
 def students_list(request):
-    students = Students.objects.all()
+
+    # check if we need to show only one group of students
+    current_group = get_current_group(request)
+    if current_group:
+        students = Students.objects.filter(student_group=current_group)
+    else:
+        # otherwise show all students
+        students = Students.objects.all()
 
     # try to order students list
     order_by = request.GET.get('order_by', 'last_name')
