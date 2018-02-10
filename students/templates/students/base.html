@@ -70,8 +70,7 @@
 <!-- Start Main Page Content-->
 <div class = "row" id = "content-columns">
  
-    <div class = "col-xs-12" id = "content-column">
-
+    <div class = "col-xs-12" id = "content-column"> 
      <!-- Status Message-->
       {% block status_message %}
       {% if messages %}
@@ -82,6 +81,8 @@
          {% endfor %}
           </ul>
          </div>
+      {% else %}
+      <div id = "alertModal">Йде збереження...</div> 
       {% endif %}
       {% endblock %}
        
@@ -123,6 +124,8 @@
     </div>
   </div>
 </div>
+
+<!-- Progress bar for student edit -->
 
 <!-- Javascript Inclusions -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
