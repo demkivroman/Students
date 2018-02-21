@@ -49,16 +49,16 @@
 <div class = "col-xs-12">
    <ul class = "nav nav-tabs" role = "tablist">
    {% url 'home' as home %}
-   <li role = "presentation" {% if request.path == home %}
-    class = "active" {%endif%}> <a href = "{% url "home" %}"> Студенти </a> </li>
-   <li role = "presentation" {% if 'journal/' in request.path%}
-   class = "active" {%endif%}> <a href = "/journal"> Відвідування </a> </li>
+   <li role = "presentation"> <a href = "{% url "home" %}"> Студенти </a> </li>
+   {% url 'journal' as journal%}
+   <li role = "presentation" id = "ajax_journal" data-url="{% url "journal" %}"> 
+    <a href = "#">Відвідування </a> </li>
    {% url 'groups' as group %}
-   <li role = "presentation" {% if request.path == group %}
-    class = "active" {%endif%}> <a href = "{% url "groups" %}"> Групи </a> </li>
+   <li role = "presentation" id = "ajax_group" data-url="{% url "groups"%}"> 
+   <a href = "{% url "groups" %}"> Групи </a> </li>
    {% url 'exams' as exam %}
-   <li role = "presentation" {% if request.path == exam %} class = "active" {%endif%}><a href = "{% url 'exams' %}">Іспити</a></li>
-   <li role = "presentation" {%if 'contact' in request.path %} class="active" {%endif%}>
+   <li role = "presentation"><a href = "{% url 'exams' %}">Іспити</a></li>
+   <li role = "presentation">
    <a href="{% url 'contact_admin' %}">Контакт</a>
    </li>
    </ul>

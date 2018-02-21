@@ -134,9 +134,50 @@ function initEditStudentForm(form, modal){
     });
 }
 
+function initTabs(){
+    $('#ajax_journal').click(function(event){
+    var jour = $(this);
+    $.ajax({
+     'url': jour.data('url'),
+     'method':'get',
+     'dataType': 'html',
+     'success': function(data,status,xhr){
+          var content = $('#content-columns'), html = $(data);
+          var conJour = html.find('#content-columns');
+              content.html(conJour);
+          initJournal();
+              
+         },
+     'error': function(){
+         alert('Помилка на сервері. Сробуйте будь-ласка пізніше.');
+         return false;
+      }
+   });
+    return false;
+    });
+/*
+    $("#ajax_group").click(function(event){
+        var groupTab = $(this);
+        $.ajax({
+            'url': groupTab('url'),
+            'method': 'get',
+            'dataType': 'html',
+            'success': function(data, status, xhr){
+                var content = $('#content-columns'), html = $(data);
+                //var conGroup = 
+             alert(data);
+            }
+        });
+       return false;
+    });
+*/
+}
+
+
 $(document).ready(function(){
 initJournal();
 initGroupSelector();
 initDateFields();
 initEditStudentPage();
+initTabs();
 });
