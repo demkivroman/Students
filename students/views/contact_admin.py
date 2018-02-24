@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django import forms
 from django.core.mail import send_mail
+import logging
 
 from studentsdb.settings import ADMIN_EMAIL
 from django.core.urlresolvers import reverse_lazy
@@ -62,9 +63,16 @@ class ContactView(FormView):
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
         from_email = form.cleaned_data['from_email']
-
-        send_mail(subject, message, from_email, [ADMIN_EMAIL])
-        messages.info(self.request, u"Лист надіслано, успішно :)")
+        try:     
+            send_mail(subject, message, from_email, [ADMIN_EMAIL])
+        except Exception:
+            message = u"Під час відправки листа виникла непередбачувана помилка.Спробуйте скористатись даною формою пізніше"
+            logger = logging.getLogger(__name__)
+            logger.exception(message)
+            messages.info(self.request, u"Сталась помилка при відправці листа")
+        else:
+            message = u"Повідомлення успішно надіслано!"
+            messages.info(self.request, u"Лист надіслано, успішно :)")
     
         return super(ContactView, self).form_valid(form)  
 
