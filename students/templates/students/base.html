@@ -7,7 +7,7 @@
 <title>{% trans "Students Accounting Service " %} - {% block meta_title %}{% endblock meta_title %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name = "description"
-      value = "Система Обліку Студентів Навчального Закаду" />
+      value = "{% trans "App to manage students database" %}" />
 
 <!-- Style inclusion -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -27,14 +27,14 @@
 <div class = "row" id = "header">
    <!-- Logo-->
 <div class = "col-xs-8">
-<h1>Сервіс Обліку Студентів</h1>
+<h1>{% trans "Students Accounting Service " %}</h1>
 </div>
 
    <!-- Group Selector-->
 <div class = "col-xs-4" id = "group-selector" style = "margin-top: 25px">
-  <strong>Група:</strong>
+  <strong>{% trans "Group:" %}</strong>
   <select>
-    <option value = "">Усі Студенти</option>
+    <option value = "">{% trans "All Students" %}</option>
     {% for group in GROUPS %}
     <option value="{{group.id}}" {% if group.selected %} selected="1"{% endif %}>
     {{group.title}}{% if group.leader %}, {{group.leader}}{% endif %}</option>
@@ -50,17 +50,17 @@
 <div class = "col-xs-12">
    <ul class = "nav nav-tabs" role = "tablist">
    {% url 'home' as home %}
-   <li role = "presentation"> <a href = "{% url "home" %}"> Студенти </a> </li>
+   <li role = "presentation"> <a href = "{% url "home" %}"> {% trans "Students" %} </a> </li>
    {% url 'journal' as journal%}
    <li role = "presentation" id = "ajax_journal" data-url="{% url "journal" %}"> 
-    <a href = "#">Відвідування </a> </li>
+    <a href = "#"> {% trans "Journal" %} </a> </li>
    {% url 'groups' as group %}
    <li role = "presentation" id = "ajax_group" data-url="{% url "groups"%}"> 
-   <a href = "{% url "groups" %}"> Групи </a> </li>
+   <a href = "{% url "groups" %}"> {% trans "Groups" %} </a> </li>
    {% url 'exams' as exam %}
-   <li role = "presentation"><a href = "{% url 'exams' %}">Іспити</a></li>
+   <li role = "presentation"><a href = "{% url 'exams' %}">{% trans "Exams" %}</a></li>
    <li role = "presentation">
-   <a href="{% url 'contact_admin' %}">Контакт</a>
+   <a href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
    </li>
    </ul>
 </div>
@@ -83,7 +83,7 @@
           </ul>
          </div>
       {% else %}
-      <div id = "alertModal">Йде збереження...</div> 
+      <div id = "alertModal">{% trans "Saving..." %}</div> 
       {% endif %}
       {% endblock %}
        
@@ -100,7 +100,7 @@
 <!-- Start Footer-->
 <div class = "row" id = "footer">
     <div class = "col-xs-12">
-     &copy; 2017 Сервіс Обліку Студентів
+     &copy; 2017 {% trans "Students Accounting Service" %}
     </div>
 </div>
 <!-- End Footer-->
