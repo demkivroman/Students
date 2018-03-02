@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
+from django.utils.translation import ugettext as _
 import os
 from datetime import datetime
 from django.contrib import messages
@@ -18,12 +16,12 @@ class StudentUpdateView(UpdateView):
     template_name = 'students/students_edit.html'
 
     def get_success_url(self):
-        messages.info(self.request, u'Студента успішно збережено :)')
+        messages.info(self.request, _(u'Student saved successfully :)'))
         return reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            messages.info(self.request, u'Редагування студента відмінено!')
+            messages.info(self.request, _(u'Student edit is canceled!'))
             return HttpResponseRedirect(reverse('home')) 
 
         else:
@@ -36,7 +34,7 @@ class StudentDeleteView(DeleteView):
     template_name = 'students/students_confirm_delete.html'
 
     def get_success_url(self):
-        messages.info(self.request, u'Студента успішно видалено :)')
+        messages.info(self.request, _(u'Student deleted successfully :)'))
         return reverse('home')
 
     	
@@ -105,7 +103,7 @@ def students_list(request):
 
 def students_add(request):
 
-    # Якщо форма була запощена
+    # if form is posted
     if request.method == "POST":
         if request.POST.get('add_button') is not None:
             # errors collection
@@ -117,40 +115,40 @@ def students_add(request):
             # validate user input 
             first_name = request.POST.get('first_name','').strip()
             if not first_name:
-                errors['first_name'] = u"Ім'я є обов'язковим"
+                errors['first_name'] = _(u"Name is required")
             else:
                 data['first_name'] = first_name
 
             last_name = request.POST.get('last_name','').strip()
             if not last_name:
-                errors['last_name'] = u"Прізвища є обов'язковим"
+                errors['last_name'] = _(u"Last name is required")
             else:
                 data['last_name'] = last_name
 
             birthday = request.POST.get('birthday').strip()
             if not birthday:
-                errors['birthday'] = u"Дата народження є обов'язковою"
+                errors['birthday'] = _(u"Birthday is required")
             else:
                 try:
                     datetime.strptime(birthday, '%Y-%m-%d')
                 except Exception as ex:
-                    errors['birthday'] = u"Введіть коректний формат дати (напр. 1986-04-05)"
+                    errors['birthday'] = _(u"Input correct date format (example. 1986-04-05)")
                 else:
                     data['birthday'] = birthday
 
             ticket = request.POST.get('ticket','').strip()
             if not ticket:
-                errors['ticket'] = u"Номер білета є обов'язковим"
+                errors['ticket'] = _(u"Ticket is required")
             else:
                 data['ticket'] = ticket
 
             student_group = request.POST.get('student_group','').strip()
             if not student_group:
-                errors['student_group'] = u"Оберіть групу для студента"
+                errors['student_group'] = _(u"Select student group")
             else:
                 groups = Group.objects.filter(pk=student_group)
                 if len(groups) != 1:
-                    errors['student_group'] = u"Оберіть коректну групу"
+                    errors['student_group'] = _(u"Select correct group")
                 else:
                     data['student_group'] = groups[0]
 
@@ -161,18 +159,18 @@ def students_add(request):
                 extension = os.path.splitext(str(photo))[1].lower()
                 if extension in photoExten:  
                     if len(f) > 2000000:
-                        errors['photo'] = u"Файл більший 2Mb"
+                        errors['photo'] = _(u"File size exceed 2Mb")
                     else:
                         data['photo'] = photo
                 else:
-                    errors['photo'] = u"Файл невідповідає формату фотогріфії"                  
+                    errors['photo'] = _(u"File doesn't suit to photo format'")                  
 
             if not errors:
                 # create student object
                 student = Students(**data)
                 student.save()    
                 # save to message 
-                messages.success(request, u'Студента - %s %s %s, успішно додано :)' % (last_name,first_name,
+                messages.success(request, _(u'Student - %s %s %s, added successfully :)') %       (last_name,first_name,
                 request.POST.get('middle_name')))                     
                 # redirect user to student list
                 return HttpResponseRedirect(reverse('home'))  
@@ -184,7 +182,7 @@ def students_add(request):
 
         elif request.POST.get('cancel_button') is not None:
             # add to message
-            messages.info(request, u'Додавання студента скасовано :)')
+            messages.info(request, _(u'Student adding is canceled :)'))
             # redirect to home page on cancel button
             return HttpResponseRedirect(reverse('home'))
 
