@@ -170,7 +170,7 @@ def students_add(request):
                 student = Students(**data)
                 student.save()    
                 # save to message 
-                messages.success(request, _(u'Student - %s %s %s, added successfully :)') %       (last_name,first_name,
+                messages.success(request, _(u'Student - %s %s %s, added successfully :)') % (last_name,first_name,
                 request.POST.get('middle_name')))                     
                 # redirect user to student list
                 return HttpResponseRedirect(reverse('home'))  
