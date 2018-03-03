@@ -63,7 +63,7 @@ $('a.student-edit-form-link').click(function(event){
      'success': function(data,status,xhr){
          // check if we got successfull response from the server
          if(status != 'success'){
-             alert('Помилка на сервері. Сробуйте будь-ласка пізніше.');
+             alert(gettext('There was an error on the server. Please, try again a bit later.'));
              return false;
          }
          // update modal window with arrived content from the server
@@ -80,7 +80,7 @@ $('a.student-edit-form-link').click(function(event){
          });
      },
      'error': function(){
-         alert('Помилка на сервері. Сробуйте будь-ласка пізніше.');
+         alert(gettext('There was an error on the server. Please, try again a bit later.'));
          return false;
       }
    });
@@ -104,7 +104,7 @@ function initEditStudentForm(form, modal){
     form.ajaxForm({
         'dataType': 'html',
         'error': function(){
-             alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+             alert(gettext('There was an error on the server. Please, try again a bit later.'));
              return false;},
         'beforeSend': function(xhr, settings){
          $('#alertModal').show();
@@ -149,28 +149,12 @@ function initTabs(){
               
          },
      'error': function(){
-         alert('Помилка на сервері. Сробуйте будь-ласка пізніше.');
+         alert(gettext('There was an error on the server. Please, try again a bit later.'));
          return false;
       }
    });
     return false;
     });
-/*
-    $("#ajax_group").click(function(event){
-        var groupTab = $(this);
-        $.ajax({
-            'url': groupTab('url'),
-            'method': 'get',
-            'dataType': 'html',
-            'success': function(data, status, xhr){
-                var content = $('#content-columns'), html = $(data);
-                //var conGroup = 
-             alert(data);
-            }
-        });
-       return false;
-    });
-*/
 }
 
 

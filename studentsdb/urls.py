@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import  url, include
 from django.contrib import admin
 
-
+from django.views.i18n import JavaScriptCatalog
 from students.views import students
 from students.views import groups
 from students.views import journal
@@ -30,6 +30,9 @@ from students.views.journal import JournalView
 from django.conf import settings
 from django.views.static import serve
 
+js_info_dict = {
+    'packages': ('students',),
+}
 
 urlpatterns = [
 #Students url
@@ -52,6 +55,10 @@ urlpatterns = [
     url(r'^contact/$', ContactView.as_view(), name = 'contact_admin'),
 #Admin url
     url(r'^admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    url(r'^jsi18n/$',JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 if settings.DEBUG:
