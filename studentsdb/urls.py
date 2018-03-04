@@ -22,6 +22,7 @@ from students.views import groups
 from students.views import journal
 from students.views import stud_test
 from students.views import exams
+from students.views import language
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView,StudentDeleteView
 from students.views.groups import GroupDeleteView
@@ -40,6 +41,7 @@ urlpatterns = [
     url(r'^students/add$',students.students_add, name='students_add'),
     url(r'^students/(?P<pk>\d+)/edit/$',StudentUpdateView.as_view(),name='students_edit'),
     url(r'^students/(?P<pk>\d+)/delete/$',StudentDeleteView.as_view(),name='students_delete'),
+    url(r'^language/$',language.switch_lang, name='language'),
 
     url(r'^test$',stud_test.students_test, name='test'),
 #Groups url

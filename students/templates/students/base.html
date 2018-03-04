@@ -26,12 +26,12 @@
 <!-- Start Header-->
 <div class = "row" id = "header">
    <!-- Logo-->
-<div class = "col-xs-8">
+<div class = "col-xs-7">
 <h1>{% trans "Students Accounting Service " %}</h1>
 </div>
 
    <!-- Group Selector-->
-<div class = "col-xs-4" id = "group-selector" style = "margin-top: 25px">
+<div class = "col-xs-3" id = "group-selector" style = "margin-top: 25px">
   <strong>{% trans "Group:" %}</strong>
   <select>
     <option value = "">{% trans "All Students" %}</option>
@@ -39,11 +39,23 @@
     <option value="{{group.id}}" {% if group.selected %} selected="1"{% endif %}>
     {{group.title}}{% if group.leader %}, {{group.leader}}{% endif %}</option>
     {% endfor %} 
-  <select>
+  </select>
 </div>
+
+<div class = "col-xs-2" style = "margin-top: 25px">
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#337ab7">
+    {% trans "Language" %}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" id="lang_en" href="{% url 'language' %}">{% trans "en" %}</a>
+    <a class="dropdown-item" id="lang_uk" href="{% url 'language' %}">{% trans "uk" %}</a>
+  </div>
+</div>
+</div>
+
 </div>
  <!-- End Header-->
-
 {% block navigation %}
 <!-- Start SubHeader-->
 <div class = "row" id = "sub-header">

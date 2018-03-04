@@ -44,6 +44,22 @@ return true;
 });
 }
 
+function initLanguageSelector(){
+    $("#lang_en").click(function(event){
+        $.cookie('current_language','en',{'path':'/','expires':365});
+   // location.reload(true);
+    return true;
+    });
+
+    //if "uk" link clicked
+
+    $("#lang_uk").click(function(event){
+        $.cookie('current_language','uk',{'path':'/','expires':365});
+   // location.reload(true);
+    return true;
+    });
+}
+
 
 function initDateFields(){
   $("input.dateinput").datetimepicker({
@@ -164,4 +180,5 @@ initGroupSelector();
 initDateFields();
 initEditStudentPage();
 initTabs();
+initLanguageSelector();
 });
