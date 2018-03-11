@@ -24,3 +24,10 @@ display: none;
 color: red;
 display: none;
 }
+
+/* User's Toolbar' */
+
+#user-toolbar{
+margin-top: 30px;
+text-align: right;
+}

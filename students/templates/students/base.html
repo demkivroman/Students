@@ -26,10 +26,10 @@
 <!-- Start Header-->
 <div class = "row" id = "header">
    <!-- Logo-->
-<div class = "col-xs-7">
+<div class = "col-xs-6">
 <h1>{% trans "Students Accounting Service " %}</h1>
 </div>
-
+{% if user.is_authenticated %}
    <!-- Group Selector-->
 <div class = "col-xs-3" id = "group-selector" style = "margin-top: 25px">
   <strong>{% trans "Group:" %}</strong>
@@ -42,7 +42,7 @@
   </select>
 </div>
 
-<div class = "col-xs-2" style = "margin-top: 25px">
+<div class = "col-xs-1" style = "margin-top: 25px">
     <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#337ab7">
     {% trans "Language" %}
@@ -53,6 +53,18 @@
   </div>
 </div>
 </div>
+<!-- User's toolbar for authenticated users' -->
+<div class = "col-xs-2" id="user-toolbar" style = "margin-top: 30px">
+   <span>{{user.username}}: </span>
+   <a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
+</div>
+ {% else %}
+<!-- User's toolbar for authenticated users' -->
+<div class = "col-xs-6" id="user-toolbar">
+    <a href="{% url 'users:auth_login' %}">{% trans "Login" %}</a> |
+    <a href="{% url 'users:registration_register' %}">{% trans "Register" %}</a>
+</div>
+  {% endif %}
 
 </div>
  <!-- End Header-->

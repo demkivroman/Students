@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import  url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView
 
 from django.views.i18n import JavaScriptCatalog
 from students.views import students
@@ -55,6 +57,10 @@ urlpatterns = [
     url(r'^exams/$',exams.exams_list,name='exams'),
 # Contact Admin Form
     url(r'^contact/$', ContactView.as_view(), name = 'contact_admin'),
+# urls for login
+    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page':'home'}, name = 'auth_logout'),
+    url(r'^register/complete/$', RedirectView.as_view(pattern_name ='home'), name = 'registration_complete'),
+    url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
 #Admin url
     url(r'^admin/', admin.site.urls),
 ]

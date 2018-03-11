@@ -1,0 +1,198 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-03 11:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models/students.py:9
+msgid "Student"
+msgstr ""
+
+#: models/students.py:10 templates/students/base.html:53
+#: templates/students/students_list.html:4
+msgid "Students"
+msgstr ""
+
+#: models/students.py:15 templates/students/students_list.html:29
+msgid "Name"
+msgstr ""
+
+#: models/students.py:20 templates/students/students_list.html:22
+msgid "Last name"
+msgstr ""
+
+#: models/students.py:26
+msgid "Middle name"
+msgstr ""
+
+#: models/students.py:31
+msgid "Birthday"
+msgstr ""
+
+#: models/students.py:36 templates/students/students_list.html:18
+msgid "Photo"
+msgstr ""
+
+#: models/students.py:42
+msgid "Ticket"
+msgstr ""
+
+#: models/students.py:46
+msgid "Notes"
+msgstr ""
+
+#: models/students.py:49
+msgid "Group"
+msgstr ""
+
+#: templates/students/base.html:7 templates/students/base.html:30
+msgid "Students Accounting Service "
+msgstr ""
+
+#: templates/students/base.html:10
+msgid "App to manage students database"
+msgstr ""
+
+#: templates/students/base.html:35
+msgid "Group:"
+msgstr ""
+
+#: templates/students/base.html:37
+msgid "All Students"
+msgstr ""
+
+#: templates/students/base.html:56 templates/students/students_list.html:65
+msgid "Journal"
+msgstr ""
+
+#: templates/students/base.html:59
+msgid "Groups"
+msgstr ""
+
+#: templates/students/base.html:61
+msgid "Exams"
+msgstr ""
+
+#: templates/students/base.html:63
+msgid "Contact"
+msgstr ""
+
+#: templates/students/base.html:86
+msgid "Saving..."
+msgstr ""
+
+#: templates/students/base.html:103
+msgid "Students Accounting Service"
+msgstr ""
+
+#: templates/students/group_confirm_delete.html:4
+#: templates/students/group_confirm_delete.html:5
+msgid "Delete Group"
+msgstr ""
+
+#: templates/students/group_confirm_delete.html:15
+#, python-format
+msgid "Do you really want to delete group: \"%(object)s\"?"
+msgstr ""
+
+#: templates/students/group_confirm_delete.html:17
+msgid "Yes"
+msgstr ""
+
+#: templates/students/students_list.html:5
+msgid "Students database"
+msgstr ""
+
+#: templates/students/students_list.html:10
+msgid "Add Students"
+msgstr ""
+
+#: templates/students/students_list.html:35
+msgid "# Ticket"
+msgstr ""
+
+#: templates/students/students_list.html:40
+msgid "Actions"
+msgstr ""
+
+#: templates/students/students_list.html:61
+msgid "Action"
+msgstr ""
+
+#: templates/students/students_list.html:66
+msgid "Edit"
+msgstr ""
+
+#: templates/students/students_list.html:67
+msgid "Delete"
+msgstr ""
+
+#: views/students.py:19
+msgid "Student saved successfully :)"
+msgstr ""
+
+#: views/students.py:24
+msgid "Student edit is canceled!"
+msgstr ""
+
+#: views/students.py:37
+msgid "Student deleted successfully :)"
+msgstr ""
+
+#: views/students.py:118
+msgid "Name is required"
+msgstr ""
+
+#: views/students.py:124
+msgid "Last name is required"
+msgstr ""
+
+#: views/students.py:130
+msgid "Birthday is required"
+msgstr ""
+
+#: views/students.py:135
+msgid "Input correct date format (example. 1986-04-05)"
+msgstr ""
+
+#: views/students.py:141
+msgid "Ticket is required"
+msgstr ""
+
+#: views/students.py:147
+msgid "Select student group"
+msgstr ""
+
+#: views/students.py:151
+msgid "Select correct group"
+msgstr ""
+
+#: views/students.py:162
+msgid "File size exceed 2Mb"
+msgstr ""
+
+#: views/students.py:166
+msgid "File doesn't suit to photo format'"
+msgstr ""
+
+#: views/students.py:173
+#, python-format
+msgid "Student - %s %s %s, added successfully :)"
+msgstr ""
+
+#: views/students.py:185
+msgid "Student adding is canceled :)"
+msgstr ""
