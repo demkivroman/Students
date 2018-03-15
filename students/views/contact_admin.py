@@ -12,6 +12,7 @@ from django.views.generic.edit import FormView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class ContactForm(forms.Form):   
 
@@ -51,7 +52,8 @@ class ContactForm(forms.Form):
 
 
 
-class ContactView(FormView):
+class ContactView(PermissionRequiredMixin,FormView):
+    permission_required = 'auth.add_user'
     template_name = 'contact_form/contact_form.html'
     form_class = ContactForm 
     success_url =  reverse_lazy('contact_admin')

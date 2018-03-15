@@ -10,6 +10,9 @@ from ..models  import Students, Group
 from django.views.generic import UpdateView, DeleteView
 from ..util import paginate, get_current_group
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 class StudentUpdateView(UpdateView):
     model = Students
     fields = '__all__'
@@ -27,6 +30,10 @@ class StudentUpdateView(UpdateView):
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentUpdateView, self).dispatch(*args, **kwargs)
+
 # Class for deleting object
 
 class StudentDeleteView(DeleteView):
@@ -36,7 +43,9 @@ class StudentDeleteView(DeleteView):
     def get_success_url(self):
         messages.info(self.request, _(u'Student deleted successfully :)'))
         return reverse('home')
-
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentUpdateView, self).dispatch(*args, **kwargs)
     	
 # Views for Students
 def students_list(request):
@@ -100,7 +109,7 @@ def students_list(request):
 
 
 
-
+@login_required
 def students_add(request):
 
     # if form is posted

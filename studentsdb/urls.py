@@ -17,6 +17,7 @@ from django.conf.urls import  url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
 
 from django.views.i18n import JavaScriptCatalog
 from students.views import students
@@ -27,11 +28,13 @@ from students.views import exams
 from students.views import language
 from students.views.contact_admin import ContactView
 from students.views.students import StudentUpdateView,StudentDeleteView
-from students.views.groups import GroupDeleteView
+from students.views.groups import GroupDeleteView, groups_list, groups_add, groups_edit
 from students.views.journal import JournalView
 
 from django.conf import settings
 from django.views.static import serve
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
 js_info_dict = {
     'packages': ('students',),
@@ -47,10 +50,10 @@ urlpatterns = [
 
     url(r'^test$',stud_test.students_test, name='test'),
 #Groups url
-    url(r'^groups$',groups.groups_list,name='groups'),
-    url(r'^groups/add$',groups.groups_add,name='groups_add'),
-    url(r'^groups/(?P<gid>\d+)/edit/$',groups.groups_edit,name='groups_edit'),
-    url(r'^groups/(?P<pk>\d+)/delete/$',GroupDeleteView.as_view(),name='groups_delete'),
+    url(r'^groups$',login_required(groups_list),name='groups'),
+    url(r'^groups/add$',login_required(groups_add),name='groups_add'),
+    url(r'^groups/(?P<gid>\d+)/edit/$',login_required(groups_edit),name='groups_edit'),
+    url(r'^groups/(?P<pk>\d+)/delete/$',login_required(GroupDeleteView.as_view()),name='groups_delete'),
 #Visiting url
     url(r'^journal/(?P<pk>\d+)?/?$',JournalView.as_view(),name='journal'),
 #Emams url
@@ -58,6 +61,8 @@ urlpatterns = [
 # Contact Admin Form
     url(r'^contact/$', ContactView.as_view(), name = 'contact_admin'),
 # urls for login
+    url(r'^users/profile/$', login_required(TemplateView.as_view(
+                 template_name='registration/profile.html')), name = 'profile'),
     url(r'^users/logout/$', auth_views.logout, kwargs={'next_page':'home'}, name = 'auth_logout'),
     url(r'^register/complete/$', RedirectView.as_view(pattern_name ='home'), name = 'registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace='users')),

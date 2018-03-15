@@ -55,7 +55,7 @@
 </div>
 <!-- User's toolbar for authenticated users' -->
 <div class = "col-xs-2" id="user-toolbar" style = "margin-top: 30px">
-   <span>{{user.username}}: </span>
+   <a href="{% url 'profile' %}">{{user.get_full_name|default:user.username}}</a>
    <a href="{% url 'users:auth_logout' %}">{% trans "Logout" %}</a>
 </div>
  {% else %}
@@ -75,6 +75,7 @@
    <ul class = "nav nav-tabs" role = "tablist">
    {% url 'home' as home %}
    <li role = "presentation"> <a href = "{% url "home" %}"> {% trans "Students" %} </a> </li>
+   {% if user.is_authenticated %}
    {% url 'journal' as journal%}
    <li role = "presentation" id = "ajax_journal" data-url="{% url "journal" %}"> 
     <a href = "#"> {% trans "Journal" %} </a> </li>
@@ -83,9 +84,12 @@
    <a href = "{% url "groups" %}"> {% trans "Groups" %} </a> </li>
    {% url 'exams' as exam %}
    <li role = "presentation"><a href = "{% url 'exams' %}">{% trans "Exams" %}</a></li>
+   {% endif %}
+   {% if perms.auth.add_user %}
    <li role = "presentation">
    <a href="{% url 'contact_admin' %}">{% trans "Contact" %}</a>
    </li>
+   {% endif %}
    </ul>
 </div>
 </div>
