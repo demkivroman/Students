@@ -21,4 +21,4 @@ class SProfile(models.Model):
         default = '')
 
     def __unicode__(self):
-        return self.user.username
+        return self.username
