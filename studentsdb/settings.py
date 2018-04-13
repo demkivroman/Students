@@ -11,36 +11,26 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from .env_settings import SECRET_KEY
+from .env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
+from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from .env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
+from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
+from .env_settings import PORTAL_URL
 
+# in dev environment we may not have STATIC_ROOT defined
+try:
+    from .env_settings import STATIC_ROOT
+except ImportError:
+    pass
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-PORTAL_URL = 'http://localhost:8000'
-
-# email settings
-# please, set here your smtp server details and your admin email
-
-ADMIN_EMAIL = 'demkivroman5@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'demkivroman5@gmail.com'
-EMAIL_HOST_PASSWORD = 'demkivroman5'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -103,13 +93,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1595830527199818'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b13f6961bbef71e8d19bcb771782c873'
 
 WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
-
-from .db import DATABASES
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -143,16 +129,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
-
-# Universal portal url
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'..','media/img')
 
 # Logging settings
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
